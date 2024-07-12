@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Robot Customization -->
+  <arg name="gui" default="true" />
+  <arg name="rvizconfig" default="$(find abb_irb4600_robot)/rviz/abb_irb4600_robot.rviz" />
+  <arg name="load_robot_description" default="true"/>
+
+  <param name="robot_description" if="$(arg load_robot_description)"
+         command="xacro $(find abb_irb4600_description)/urdf/abb_irb4600_40_255.xacro"/>
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" output="screen"/>
+</launch>

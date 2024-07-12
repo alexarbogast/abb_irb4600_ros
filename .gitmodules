@@ -1,0 +1,4 @@
+[submodule "abb_irb4600_description"]
+	path = abb_irb4600_description
+	url = git@github.com:alexarbogast/abb_irb4600_description.git
+	branch = master

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Robot Customization -->
+  <arg name="rviz"        default="true"  doc="Should RVIz be launched?"/>
+  <arg name="pipeline"    default="ompl"  doc="Which planning pipeline should be used"/>
+
+  <!-- Launch the move group for motion planning -->
+  <include file="$(find abb_irb4600_moveit_config)/launch/move_group.launch">
+    <arg name="moveit_controller_manager" value="abb_irb4600"/>
+  </include>
+
+  <!-- Robot ROS Topics and Rviz -->
+  <group if="$(arg rviz)">
+    <include file="$(find abb_irb4600_robot)/launch/abb_irb4600_visualization.launch">
+      <arg name="load_robot_description" value="false"/>
+      <arg name="rvizconfig" value="$(find abb_irb4600_moveit_config)/launch/moveit.rviz"/>
+    </include>
+  </group>
+</launch>

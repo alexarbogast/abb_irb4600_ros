@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Robot Customization -->
+  <arg name="rviz"        default="false" doc="Should RVIz be launched?"/>
+  <arg name="controller"  default="position_trajectory_controller" doc="Which controller should be started?"/>
+
+  <!-- Load the robot description -->
+  <param name="robot_description" command="xacro $(find abb_irb4600_description)/urdf/abb_irb4600_40_255.xacro"/>
+
+  <!-- Launch the appropriate hardware interface (we only support sim for now) -->
+  <include file="$(find abb_irb4600_hardware)/launch/sim_hardware.launch" pass_all_args="true"/>
+
+  <!-- Load ros_control controllers -->
+  <include file="$(find abb_irb4600_robot)/launch/ros_controllers.launch" pass_all_args="true"/>
+
+  <!-- Robot ROS Topics and Rviz -->
+  <group if="$(arg rviz)">
+    <include file="$(find abb_irb4600_robot)/launch/abb_irb4600_visualization.launch">
+      <arg name="load_robot_description" value="false"/>
+    </include>
+  </group>
+</launch>
+

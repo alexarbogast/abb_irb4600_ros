@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>abb_irb4600_hardware</name>
+  <version>0.0.1</version>
+  <description>ABB IRB 4600 robot hardware configuration</description>
+
+  <maintainer email="arbogastaw@gmail.com">Alex Arbogast</maintainer>
+  <author email="arbogastaw@gmail.com">Alex Arbogast</author>
+
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <exec_depend>ros_control_boilerplate</exec_depend>
+
+</package>
