@@ -4,12 +4,16 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.conditions import IfCondition
 from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 
-from launch_ros.substitutions import FindPackageShare
+from launch_ros.substitutions import FindPackage, FindPackageShare
 
 
 def generate_launch_description():
     robot_controllers = PathJoinSubstitution(
         [FindPackageShare("abb_irb4600_robot"), "config", "ros_controllers.yaml"]
+    )
+
+    initial_positions_file = PathJoinSubstitution(
+        [FindPackageShare("abb_irb4600_description"), "config", "initial_positions.yaml"]
     )
 
     declared_arguments = []
@@ -36,6 +40,13 @@ def generate_launch_description():
     )
     declared_arguments.append(
         DeclareLaunchArgument(
+            "initial_positions_file",
+            default_value=initial_positions_file,
+            description="Path to the initial positions configuration"
+        )
+    )
+    declared_arguments.append(
+        DeclareLaunchArgument(
             "use_mock_hardware",
             default_value="true",
             description="Should mock (simulated) hardware be used?",
@@ -51,32 +62,34 @@ def generate_launch_description():
     prefix = LaunchConfiguration("prefix")
     controller = LaunchConfiguration("controller")
     controller_config = LaunchConfiguration("controller_config")
+    initial_positions_file = LaunchConfiguration("initial_positions_file")
     use_mock_hardware = LaunchConfiguration("use_mock_hardware")
     rviz = LaunchConfiguration("rviz")
 
     # fmt: off
     hardware = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([
-                PathJoinSubstitution([
-                        FindPackageShare("abb_irb4600_robot"),
-                        "launch/ros_controllers.launch.py",
-                ]),
+            PathJoinSubstitution([
+                FindPackageShare("abb_irb4600_robot"),
+                "launch/ros_controllers.launch.py",
+            ]),
         ]),
         launch_arguments={
             "prefix": prefix,
             "controller": controller,
             "controller_config": controller_config,
+            "initial_positions_file": initial_positions_file,
             "use_mock_hardware": use_mock_hardware,
         }.items()
     )
 
     visualization = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([
-                PathJoinSubstitution([
-                        FindPackageShare("abb_irb4600_robot"),
-                        "launch",
-                        "abb_irb4600_visualization.launch.py",
-                ]),
+            PathJoinSubstitution([
+                    FindPackageShare("abb_irb4600_robot"),
+                    "launch",
+                    "abb_irb4600_visualization.launch.py",
+            ]),
         ]),
         launch_arguments={"prefix": prefix}.items(),
         condition=IfCondition(rviz),
