@@ -1,20 +1,19 @@
 <?xml version="1.0"?>
 <package format="2">
 	<name>abb_irb4600_ros</name>
-	<version>0.0.1</version>
+	<version>0.1.0</version>
 	<description>Metapackage for abb_irb4600_ros</description>
 	<maintainer email="arbogastaw@gmail.com">Alex Arbogast</maintainer>
 	<license>Apache2</license>
 
 	<author>Alex Arbogast</author>
-	<buildtool_depend>catkin</buildtool_depend>
+	<buildtool_depend>ament_cmake</buildtool_depend>
 
 	<exec_depend>abb_irb4600_description</exec_depend>
   <exec_depend>abb_irb4600_moveit_config</exec_depend>
-  <exec_depend>abb_irb4600_hardware</exec_depend>
 	<exec_depend>abb_irb4600_robot</exec_depend>
 
 	<export>
-		<metapackage/>
+		<build_type>ament_cmake</build_type>
 	</export>
 </package>

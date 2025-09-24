@@ -1,10 +1,11 @@
-cmake_minimum_required(VERSION 3.0.2)
+cmake_minimum_required(VERSION 3.5)
 project(abb_irb4600_robot)
 
-find_package(catkin REQUIRED)
-catkin_package(CATKIN_DEPENDS xacro)
+find_package(ament_cmake REQUIRED)
 
-install(
-  DIRECTORY config launch
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+install(DIRECTORY
+  config launch rviz
+  DESTINATION share/${PROJECT_NAME}
 )
+
+ament_package()

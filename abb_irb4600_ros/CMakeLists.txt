@@ -1,4 +1,6 @@
-cmake_minimum_required(VERSION 3.4)
+cmake_minimum_required(VERSION 3.5)
 project(abb_irb4600_ros)
-find_package(catkin REQUIRED)
-catkin_metapackage()
+
+find_package(ament_cmake REQUIRED)
+
+ament_package()

@@ -5,11 +5,11 @@ This package provides configuration and launch files for running the ABB IRB
 
 ## Running the Robot
 
-The [abb_irb4600_robot.launch](./launch/abb_irb4600_robot.launch.launch) file
+The [abb_irb4600_robot.launch.py](./launch/abb_irb4600_robot.launch.py) file
 will launch the hardware interface and controllers.
 
 ```shell
-roslaunch abb_irb4600_robot abb_irb4600_robot.launch
+ros2 launch abb_irb4600_robot abb_irb4600_robot.launch
 ```
 
 By default, this launches the robot with a joint position trajectory controller.
@@ -22,9 +22,9 @@ done to prevent overlapping Rviz windows when using MoveIt.
 
 ## Motion planning with MoveIt
 
-After launching the robot, interactive motion planning can be performed in Rviz.
-Using another terminal:
+Rviz can be used for interactive motion planning with MoveIt.
+In another terminal:
 
 ```shell
-roslaunch abb_irb4600_robot moveit_planning.launch
+ros2 launch abb_irb4600_robot moveit_planning.launch
 ```
