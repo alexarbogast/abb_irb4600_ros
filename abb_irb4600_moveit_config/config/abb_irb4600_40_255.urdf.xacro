@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="abb_irb4600_40_255">
+    <xacro:arg name="initial_positions_file" default="initial_positions.yaml" />
+
+    <!-- Import abb_irb4600_40_255 urdf file -->
+    <xacro:include filename="$(find abb_irb4600_description)/urdf/abb_irb4600_40_255.xacro" />
+
+</robot>
