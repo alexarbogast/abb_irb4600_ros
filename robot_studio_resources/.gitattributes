@@ -1,0 +1,2 @@
+# Treat pack-and-go files as binary
+*.rspag binary
