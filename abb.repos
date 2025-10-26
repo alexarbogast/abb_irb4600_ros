@@ -1,0 +1,9 @@
+repositories:
+  abb_ros2:
+    type: git
+    url: https://github.com/PickNikRobotics/abb_ros2
+    version: rolling
+  abb_irb4600_description:
+    type: git
+    url: https://github.com/alexarbogast/abb_irb4600_description
+    version: ros2
